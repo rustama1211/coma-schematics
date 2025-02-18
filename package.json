@@ -1,6 +1,6 @@
 {
   "name": "@maxsol/coma-schematics",
-  "version": "11.0.6",
+  "version": "11.0.4",
   "description": "Custom Schematic for generate module boilerplate (@schematics)",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
     "build": "rm -rf dist && tsc --project tsconfig.lib.json",
     "clean": "gulp clean:src",
     "copy:collection": "cpx src/collection.json dist && cpx 'src/lib/**/schema.json' dist/lib",
-    "copy:lib": "cpx 'src/lib/**/{files,workspace}/**/*.*' dist/lib --include-empty-dirs && cpx 'src/lib/**/{files,workspace}/**/.!(gitignore)' dist/lib",
+    "copy:lib": "cpx 'src/lib/**/{files,workspace}/**' dist/lib --include-empty-dirs && cpx 'src/lib/**/{files,workspace}/**/*.*' dist/lib --include-empty-dirs && cpx 'src/lib/**/{files,workspace}/**/.!(gitignore)' dist/lib",
     "lint": "eslint '{src,test}/**/*.ts' --fix",
     "prepublish:next": "npm run build",
     "publish:next": "npm publish --access public --tag next",

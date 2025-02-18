@@ -13,6 +13,7 @@ import {
   Tree,
   url,
 } from '@angular-devkit/schematics';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { normalizeToKebabOrSnakeCase } from '../../utils/formatting';
 import * as pluralize from 'pluralize';
 import {
@@ -20,6 +21,11 @@ import {
   ModuleDeclarator,
 } from '../../utils/module.declarator';
 import { ModuleFinder } from '../../utils/module.finder';
+import {
+  addPackageJsonDependency,
+  getPackageJsonDependency,
+  NodeDependencyType,
+} from '../../utils/dependencies.utils';
 import { Location, NameParser } from '../../utils/name.parser';
 import { mergeSourceRoot } from '../../utils/source-root.helpers';
 import { ModuleOptions } from './module.schema';
@@ -29,6 +35,7 @@ export function main(options: ModuleOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
     return branchAndMerge(
       chain([
+        addMappedTypesDependencyIfApplies(options),
         mergeSourceRoot(options),
         addDeclarationToModule(options),
         mergeWith(generate(options)),
@@ -111,5 +118,27 @@ function addDeclarationToModule(options: ModuleOptions): Rule {
       } as DeclarationOptions),
     );
     return tree;
+  };
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function addMappedTypesDependencyIfApplies(_options: ModuleOptions): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    try {
+      const nodeDependencyRef = getPackageJsonDependency(
+        host,
+        '@nestjs/mapped-types',
+      );
+      if (!nodeDependencyRef) {
+        addPackageJsonDependency(host, {
+          type: NodeDependencyType.Default,
+          name: '@nestjs/mapped-types',
+          version: '*',
+        });
+        context.addTask(new NodePackageInstallTask());
+      }
+    } catch {
+      // ignore if "package.json" not found
+    }
   };
 }
