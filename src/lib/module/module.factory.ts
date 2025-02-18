@@ -114,11 +114,13 @@ function addDeclarationToModule(options: ModuleOptions): Rule {
     const seedsFolder = 'seeds';
 
     if (!tree.exists(join(options.path as Path, migrationFolder))) {
-      mkdirSync(join(options.path as Path, migrationFolder));
+      mkdirSync(join(options.path as Path, migrationFolder), {
+        recursive: true,
+      });
     }
 
     if (!tree.exists(join(options.path as Path, seedsFolder))) {
-      mkdirSync(join(options.path as Path, seedsFolder));
+      mkdirSync(join(options.path as Path, seedsFolder), { recursive: true });
     }
 
     const content = tree.read(options.module).toString();
