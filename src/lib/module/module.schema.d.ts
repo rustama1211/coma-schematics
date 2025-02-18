@@ -29,6 +29,13 @@ export interface ModuleOptions {
    * Application language.
    */
   language?: string;
+
+  spec?: boolean;
+  /**
+   * Specifies the file suffix of spec files.
+   * @default "spec"
+   */
+  specFileSuffix?: string;
   /**
    * The source root path
    */

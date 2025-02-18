@@ -1,4 +1,5 @@
 import { join, Path, strings } from '@angular-devkit/core';
+import { classify } from '@angular-devkit/core/src/utils/strings';
 import {
   apply,
   branchAndMerge,
@@ -7,11 +8,13 @@ import {
   move,
   Rule,
   SchematicContext,
+  Source,
   template,
   Tree,
   url,
 } from '@angular-devkit/schematics';
 import { normalizeToKebabOrSnakeCase } from '../../utils/formatting';
+import * as pluralize from 'pluralize';
 import {
   DeclarationOptions,
   ModuleDeclarator,
@@ -43,19 +46,44 @@ function transform(source: ModuleOptions): ModuleOptions {
   target.name = normalizeToKebabOrSnakeCase(location.name);
   target.path = normalizeToKebabOrSnakeCase(location.path);
   target.language = target.language !== undefined ? target.language : 'ts';
+  if (target.language === 'js') {
+    throw new Error(
+      'The "resource" schematic does not support JavaScript language (only TypeScript is supported).',
+    );
+  }
+  target.specFileSuffix = normalizeToKebabOrSnakeCase(
+    source.specFileSuffix || 'spec',
+  );
 
   target.path = target.flat
     ? target.path
     : join(target.path as Path, target.name);
   return target;
 }
+/*
+[
+      template({
+        ...strings,
+        ...options,
+      }),
+      move(options.path),
+    ])(context);
+    */
 
-function generate(options: ModuleOptions) {
+function generate(options: ModuleOptions): Source {
   return (context: SchematicContext) =>
     apply(url(join('./files' as Path, options.language)), [
       template({
         ...strings,
         ...options,
+        lowercased: (name: string) => {
+          const classifiedName = classify(name);
+          return (
+            classifiedName.charAt(0).toLowerCase() + classifiedName.slice(1)
+          );
+        },
+        singular: (name: string) => pluralize.singular(name) as string,
+        ent: (name: string) => name + '.entity',
       }),
       move(options.path),
     ])(context);
@@ -77,7 +105,10 @@ function addDeclarationToModule(options: ModuleOptions): Rule {
     const declarator: ModuleDeclarator = new ModuleDeclarator();
     tree.overwrite(
       options.module,
-      declarator.declare(content, options as DeclarationOptions),
+      declarator.declare(content, {
+        ...options,
+        type: 'module',
+      } as DeclarationOptions),
     );
     return tree;
   };

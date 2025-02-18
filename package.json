@@ -31,9 +31,15 @@
     "url": "git+https://github.com/rustama_1211/coma-schematics.git"
   },
   "contributors": [
-    "ThomRick",
-    "Kamil Mysliwiec",
-    "John Biundo"
+    {
+      "name": "ThomRick"
+    },
+    {
+      "name": "Kamil Mysliwiec"
+    },
+    {
+      "name": "John Biundo"
+    }
   ],
   "license": "MIT",
   "bugs": {
@@ -101,5 +107,10 @@
   },
   "lint-staged": {
     "**/*.{ts,json}": []
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "",
+  "types": "./dist/index.d.ts"
 }
