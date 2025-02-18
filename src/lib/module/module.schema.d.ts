@@ -26,6 +26,10 @@ export interface ModuleOptions {
    */
   type?: string;
   /**
+   * When true, CRUD entry points are generated.
+   */
+  crud?: boolean;
+  /**
    * Application language.
    */
   language?: string;

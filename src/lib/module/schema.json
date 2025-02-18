@@ -36,6 +36,15 @@
       "description": "Flag to skip the module import.",
       "default": false
     },
+    "crud": {
+      "type": "boolean",
+      "description": "When true, CRUD entry points are generated.",
+      "default": true,
+      "x-prompt": {
+        "message": "Would you like to generate CRUD entry points?",
+        "type": "confirmation"
+      }
+    },
     "flat": {
       "type": "boolean",
       "default": false,
