@@ -1,5 +1,6 @@
 import { join, Path, strings } from '@angular-devkit/core';
 import { classify } from '@angular-devkit/core/src/utils/strings';
+import fs from 'fs';
 import {
   apply,
   branchAndMerge,
@@ -108,6 +109,18 @@ function addDeclarationToModule(options: ModuleOptions): Rule {
     if (!options.module) {
       return tree;
     }
+
+    const migrationFolder = 'migrations';
+    const seedsFolder = 'seeds';
+
+    if (!tree.exists(join(options.path as Path, migrationFolder))) {
+      fs.mkdirSync(join(options.path as Path, migrationFolder));
+    }
+
+    if (!tree.exists(join(options.path as Path, seedsFolder))) {
+      fs.mkdirSync(join(options.path as Path, seedsFolder));
+    }
+
     const content = tree.read(options.module).toString();
     const declarator: ModuleDeclarator = new ModuleDeclarator();
     tree.overwrite(
