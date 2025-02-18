@@ -6,12 +6,6 @@
       "description": "Create a Coma module.",
       "schema": "./lib/module/schema.json",
       "aliases": ["mo"]
-    },
-    "resource": {
-      "factory": "./lib/resource/resource.factory#main",
-      "description": "Create a Nest resource.",
-      "schema": "./lib/resource/schema.json",
-      "aliases": ["res"]
     }
   }
 }

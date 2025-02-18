@@ -39,11 +39,7 @@
     "crud": {
       "type": "boolean",
       "description": "When true, CRUD entry points are generated.",
-      "default": true,
-      "x-prompt": {
-        "message": "Would you like to generate CRUD entry points?",
-        "type": "confirmation"
-      }
+      "default": true
     },
     "flat": {
       "type": "boolean",
