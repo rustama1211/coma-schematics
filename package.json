@@ -1,7 +1,7 @@
 {
-  "name": "@nestjs/schematics",
+  "name": "@maxsol/coma-schematics",
   "version": "11.0.1",
-  "description": "Nest - modern, fast, powerful node.js web framework (@schematics)",
+  "description": "Custom Schematic for generate module boilerplate (@schematics)",
   "main": "dist/index.js",
   "files": [
     "dist/**/*"
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nestjs/schematics.git"
+    "url": "git+https://github.com/rustama_1211/coma-schematics.git"
   },
   "contributors": [
     "ThomRick",
@@ -37,9 +37,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nestjs/schematics/issues"
+    "url": "https://github.com/rustama_1211/coma-schematics/issues"
   },
-  "homepage": "https://github.com/nestjs/schematics#readme",
+  "homepage": "https://github.com/rustama_1211/coma-schematics#readme",
   "dependencies": {
     "@angular-devkit/core": "19.1.7",
     "@angular-devkit/schematics": "19.1.7",
