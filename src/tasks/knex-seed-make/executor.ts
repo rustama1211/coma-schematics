@@ -63,7 +63,9 @@ export default function (
         options.moduleDirectory,
         options.name,
       ]);
-      context.logger.info(`${colors.green('CREATE')} Successfully create seed`);
+      context.logger.info(
+        `${colors.green('CREATE')} Successfully create Seed.`,
+      );
     } catch {
       /* empty */
     }
