@@ -56,7 +56,7 @@ export default function (
     try {
       await execute([
         'knex',
-        'migrate:make',
+        'seed:make',
         '-x',
         'ts',
         '--seeds-directory',
