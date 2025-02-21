@@ -68,15 +68,6 @@ function transform(source: ModuleOptions): ModuleOptions {
     : join(target.path as Path, target.name);
   return target;
 }
-/*
-[
-      template({
-        ...strings,
-        ...options,
-      }),
-      move(options.path),
-    ])(context);
-    */
 
 function generate(options: ModuleOptions): Source {
   return (context: SchematicContext) =>
