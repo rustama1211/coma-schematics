@@ -12,6 +12,9 @@ import {
   KnexMigrationMakeNameFactoryOptions,
   KnexMigrationMakeNameTaskOptions,
 } from './options';
+const ansiColors = require('ansi-colors');
+
+const colors = ansiColors.create();
 
 export default function (
   factoryOptions: KnexMigrationMakeNameFactoryOptions = {},
@@ -34,15 +37,20 @@ export default function (
         },
       };
 
-      return new Promise<void>((resolve, reject) => {
-        spawn('npx', args, spawnOptions).on('close', (code: number) => {
-          if (code === 0) {
-            resolve();
-          } else {
-            // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
-            reject(code);
-          }
-        });
+      return new Promise<string>((resolve, reject) => {
+        spawn('npx', args, spawnOptions)
+          .on('data', (data: string) => {
+            const data_filter = data.toString().replace(/\r\n|\n/, '');
+            resolve(data_filter);
+          })
+          .on('close', (code: number) => {
+            if (code === 0) {
+              resolve(null);
+            } else {
+              // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
+              reject(code);
+            }
+          });
       });
     };
 
@@ -50,7 +58,7 @@ export default function (
     // init process just swallow any errors here
     // NOTE: This will be removed once task error handling is implemented
     try {
-      await execute([
+      const response = await execute([
         'knex',
         'migrate:make',
         '-x',
@@ -59,7 +67,9 @@ export default function (
         options.moduleDirectory,
         options.name,
       ]);
-      context.logger.info('Successfully create migration.');
+      context.logger.info(
+        `${colors.green('CREATE')} Successfully create seed: ${response}`,
+      );
     } catch {
       /* empty */
     }
