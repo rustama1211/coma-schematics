@@ -18,6 +18,10 @@
       "format": "path",
       "description": "The path to create the module."
     },
+    "moduleName": {
+      "type": "string",
+      "description": "The module name to create migration"
+    },
     "module": {
       "type": "string",
       "format": "path",

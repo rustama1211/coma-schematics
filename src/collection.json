@@ -11,13 +11,13 @@
       "factory": "./lib/knex-migration-make/knex-migration-make.factory#main",
       "description": "Create a Migration Coma.",
       "schema": "./lib/knex-migration-make/schema.json",
-      "aliases": ["kmk"]
+      "aliases": ["kmm"]
     },
     "knex-seed-make": {
       "factory": "./lib/knex-seed-make/knex-seed-make.factory#main",
       "description": "Create a Seed Coma.",
       "schema": "./lib/knex-seed-make/schema.json",
-      "aliases": ["kms"]
+      "aliases": ["ksm"]
     }
   }
 }

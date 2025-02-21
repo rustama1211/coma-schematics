@@ -13,6 +13,10 @@
       },
       "x-prompt": "What name would you like to use name?"
     },
+    "moduleName": {
+      "type": "string",
+      "description": "The module name to create migration"
+    },
     "path": {
       "type": "string",
       "format": "path",

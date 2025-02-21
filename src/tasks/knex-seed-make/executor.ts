@@ -51,6 +51,7 @@ export default function (
     // NOTE: This will be removed once task error handling is implemented
     try {
       await execute([
+        'knex',
         'migrate:make',
         '-x',
         'ts',
