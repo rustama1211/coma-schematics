@@ -7,7 +7,9 @@ import { normalizeToKebabOrSnakeCase } from '../../utils/formatting';
 import { Location, NameParser } from '../../utils/name.parser';
 import { ModuleOptions } from './knex-migration-make.schema';
 
-import { KnexMigrationMakeTask } from '../../tasks/knex-migration-make/init-task';
+import executor from '../../tasks/knex-migration-make/executor';
+
+import { newTask } from 'schematics-task';
 
 export function main(options: ModuleOptions): Rule {
   options = transform(options);
@@ -47,7 +49,11 @@ function addMigrationFile(options: ModuleOptions): Rule {
         name: options.name,
         moduleDirectory: options.path,
       };
-      context.addTask(new KnexMigrationMakeTask(migrationOptions));
+      context.addTask(
+        newTask(async (_tree, context) => {
+          await executor({})(migrationOptions, context);
+        }),
+      );
     } catch {
       // ignore if "package.json" not found
     }

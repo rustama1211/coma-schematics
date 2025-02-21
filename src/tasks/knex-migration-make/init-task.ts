@@ -9,6 +9,7 @@ import {
   TaskConfiguration,
   TaskConfigurationGenerator,
 } from '@angular-devkit/schematics';
+
 import {
   KnexMigrationMakeName,
   KnexMigrationMakeNameTaskOptions,
