@@ -59,7 +59,7 @@ export default function (
         'migrate:make',
         '-x',
         'ts',
-        '--migrations-directory',
+        '--seeds-directory',
         options.moduleDirectory,
         options.name,
       ]);
