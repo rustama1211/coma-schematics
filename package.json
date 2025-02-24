@@ -1,6 +1,6 @@
 {
   "name": "@maxsol/coma-schematics",
-  "version": "11.0.18",
+  "version": "11.0.19",
   "description": "Custom Schematic for generate module boilerplate (@schematics)",
   "main": "dist/index.js",
   "files": [
