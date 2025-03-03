@@ -11,7 +11,7 @@
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use name?"
+      "x-prompt": "What name would you like to use the migration?"
     },
     "moduleName": {
       "type": "string",

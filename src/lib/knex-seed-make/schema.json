@@ -6,12 +6,12 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name of migration.",
+      "description": "The name of seed.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the module?"
+      "x-prompt": "What name you like to use for the seed?"
     },
     "path": {
       "type": "string",
