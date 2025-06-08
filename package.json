@@ -1,6 +1,6 @@
 {
   "name": "@maxsol/coma-schematics",
-  "version": "11.0.20",
+  "version": "11.0.21",
   "description": "Custom Schematic for generate module boilerplate (@schematics)",
   "main": "dist/index.js",
   "files": [
@@ -41,7 +41,7 @@
       "name": "John Biundo"
     }
   ],
-   "overrides": {
+  "overrides": {
     "schematics-task": {
       "@angular-devkit/schematics": "^20.0.1"
     }
