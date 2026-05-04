@@ -19,9 +19,7 @@ export interface MigrateOptions {
   name: string;
 }
 
-export class KnexSeedMakeTask
-  implements TaskConfigurationGenerator<KnexMigrationSeedNameTaskOptions>
-{
+export class KnexSeedMakeTask implements TaskConfigurationGenerator<KnexMigrationSeedNameTaskOptions> {
   constructor(public migrateOptions: MigrateOptions) {}
 
   toConfiguration(): TaskConfiguration<KnexMigrationSeedNameTaskOptions> {

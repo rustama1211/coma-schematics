@@ -21,9 +21,7 @@ export interface KnexMigrationMakeNameTaskOptions {
   name?: string;
 }
 
-export declare class KnexMigrationMakeTask
-  implements TaskConfigurationGenerator<KnexMigrationMakeNameTaskOptions>
-{
+export declare class KnexMigrationMakeTask implements TaskConfigurationGenerator<KnexMigrationMakeNameTaskOptions> {
   constructor(options: KnexMigrationMakeNameTaskOptions);
   toConfiguration(): TaskConfiguration<KnexMigrationMakeNameTaskOptions>;
 }

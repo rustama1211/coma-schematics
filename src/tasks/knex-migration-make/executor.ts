@@ -32,7 +32,6 @@ export default function (
       //[process.stdin, outputStream, errorStream],
       const spawnOptions: SpawnOptions = {
         stdio: 'inherit',
-        shell: true,
         cwd: path.join(rootDirectory, ''),
         env: {
           ...process.env,
